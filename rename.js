@@ -271,7 +271,7 @@ function operator(pro) {
         const index = outList.indexOf(findKeyValue);
         if (index !== -1) {
           usflag = FG[index];
-          usflag = usflag === "🇹🇼" ? "🇨🇳" : usflag;
+          usflag = usflag === usflag ? usflag : usflag;
         }
       }
       keyover = keyover
