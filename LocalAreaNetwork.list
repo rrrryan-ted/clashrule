@@ -5,33 +5,32 @@
 # DOMAIN-SUFFIX,acl4.ssr
 
 # 本地/局域网地址
-DOMAIN-SUFFIX,ip6-localhost
-DOMAIN-SUFFIX,ip6-loopback
-DOMAIN-SUFFIX,lan
-DOMAIN-SUFFIX,local
-DOMAIN-SUFFIX,localhost
 DOMAIN,ipv4.cloudns.net
 DOMAIN-KEYWORD,apple
 DOMAIN-SUFFIX,luvc.cc
 DOMAIN-SUFFIX,luvc.top
 DOMAIN-SUFFIX,luvc.dpdns.org
 DOMAIN-SUFFIX,luvv.dpdns.org
-DOMAIN-SUFFIX,luv.ip-ddns.com
 DOMAIN-SUFFIX,ttlife.eu.org
 DOMAIN-SUFFIX,tedzhao.eu.org
+DOMAIN-SUFFIX,luv.ip-ddns.com
+DOMAIN-SUFFIX,ryn.ip-ddns.com
 DOMAIN-SUFFIX,hongxingdl.com
 DOMAIN-SUFFIX,tzfile.com
 DOMAIN-SUFFIX,hetushu.com
 DOMAIN-SUFFIX,ronglian.com
 DOMAIN-SUFFIX,1panel.live
-DOMAIN-SUFFIX,avicbid.com
 DOMAIN-SUFFIX,milkcloud.org
 DOMAIN-SUFFIX,zhunchuanpb.com
-DOMAIN-SUFFIX,cebpubservice.com
-DOMAIN-SUFFIX,luv.xx.kg
-DOMAIN-SUFFIX,luv.qzz.io
-DOMAIN-SUFFIX,ryx.xx.kg
 DOMAIN-SUFFIX,acc.qzz.io
+DOMAIN-SUFFIX,luv.qzz.io
+DOMAIN-SUFFIX,luv.xx.kg
+DOMAIN-SUFFIX,ryx.xx.kg
+DOMAIN-SUFFIX,lan
+DOMAIN-SUFFIX,local
+DOMAIN-SUFFIX,localhost
+DOMAIN-SUFFIX,ip6-loopback
+DOMAIN-SUFFIX,ip6-localhost
 IP-CIDR,0.0.0.0/8,no-resolve
 IP-CIDR,10.0.0.0/8,no-resolve
 IP-CIDR,100.64.0.0/10,no-resolve
