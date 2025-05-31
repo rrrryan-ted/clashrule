@@ -1,1 +1,1 @@
-# clashrulescollection
+# clash rules collection
