@@ -1,2 +1,0 @@
-DOMAIN-SUFFIX,google.com
-DOMAIN-SUFFIX,hongxingyunmovie.vip
