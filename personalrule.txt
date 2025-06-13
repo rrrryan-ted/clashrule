@@ -1,3 +1,2 @@
-DOMAIN-SUFFIX,google.com,🇺🇸 ‍美国节点
-DOMAIN-SUFFIX,deepseek.com,🇺🇸 ‍美国节点
-DOMAIN-SUFFIX,hongxingyunmovie.vip,🇸🇬 ‍狮城节点
+DOMAIN-SUFFIX,google.com
+DOMAIN-SUFFIX,hongxingyunmovie.vip
