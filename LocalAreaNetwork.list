@@ -4,45 +4,6 @@
 # ACL4SSR标志 如没有，代表不是用ACL4SSR规则
 # DOMAIN-SUFFIX,acl4.ssr
 
-# Personal Website
-DOMAIN-KEYWORD,apple
-DOMAIN-SUFFIX,luvc.cc
-DOMAIN-SUFFIX,luvc.top
-DOMAIN-SUFFIX,jczh.com
-DOMAIN-SUFFIX,tzfile.com
-DOMAIN-SUFFIX,1panel.live
-DOMAIN-SUFFIX,hetushu.com
-DOMAIN-SUFFIX,ronglian.com
-DOMAIN-SUFFIX,koolcenter.com
-DOMAIN-SUFFIX,hongxingdl.com
-DOMAIN-SUFFIX,yingcaicheng.com
-DOMAIN-SUFFIX,aliyundrive.cloud
-DOMAIN-SUFFIX,microsoftpersonalcontent.com
-
-
-# DigitalPlat
-DOMAIN-SUFFIX,acc.qzz.io
-DOMAIN-SUFFIX,luv.qzz.io
-DOMAIN-SUFFIX,luv.xx.kg
-DOMAIN-SUFFIX,ryx.xx.kg
-DOMAIN-SUFFIX,luvc.dpdns.org
-DOMAIN-SUFFIX,luvv.dpdns.org
-DOMAIN-SUFFIX,ttlife.dpdns.org
-
-# Dynv6
-DOMAIN-SUFFIX,luvc.eu.cc
-DOMAIN-SUFFIX,luvcc.v6.navy
-DOMAIN-SUFFIX,tyrun.dynv6.net
-
-# eu.org
-DOMAIN-SUFFIX,ttlife.eu.org
-DOMAIN-SUFFIX,tedzhao.eu.org
-
-# ClouDNS
-DOMAIN,ipv4.cloudns.net
-DOMAIN-SUFFIX,luv.ip-ddns.com
-DOMAIN-SUFFIX,ryn.ip-ddns.com
-
 # 本地/局域网地址
 DOMAIN-SUFFIX,lan
 DOMAIN-SUFFIX,local
