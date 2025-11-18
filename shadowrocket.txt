@@ -1,0 +1,34 @@
+# Shadowrocket Rule Set - Converted from ACL_Mannix_NoL.ini (2025-11-17)
+
+# --- DIRECT (直连) Rules ---
+RULE-SET,https://raw.githubusercontent.com/rrrryan-ted/clashrule/refs/heads/main/mydirect.list,DIRECT
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list,DIRECT
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list,DIRECT
+RULE-SET,https://raw.githubusercontent.com/rrrryan-ted/clashrule/refs/heads/main/LocalAreaNetwork.list,DIRECT
+RULE-SET,https://raw.githubusercontent.com/zsokami/ACL4SSR/main/ChinaOnly.list,DIRECT
+# GEOIP CN 规则
+GEOIP,CN,DIRECT,no-resolve
+
+# --- Proxy/Select (代理/分流) Rules - Mapped to 'Proxy' Group ---
+# 注意：您需要将 'Proxy' 替换为您在 Shadowrocket 配置中定义的实际代理策略组名称。
+RULE-SET,https://raw.githubusercontent.com/zsokami/ACL4SSR/main/UnBan1.list,Proxy
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list,Proxy
+RULE-SET,https://raw.githubusercontent.com/zsokami/ACL4SSR/main/GoogleCN.list,Proxy
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/SteamCN.list,Proxy
+RULE-SET,https://raw.githubusercontent.com/rrrryan-ted/clashrule/refs/heads/main/mynetflix.list,Proxy
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Netflix/Netflix.list,Proxy
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TikTok/TikTok.list,Proxy
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OneDrive/OneDrive.list,Proxy
+RULE-SET,https://raw.githubusercontent.com/rrrryan-ted/clashrule/refs/heads/main/ai_2025.list,Proxy
+RULE-SET,https://raw.githubusercontent.com/rrrryan-ted/clashrule/refs/heads/main/mywebsite.list,Proxy
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list,Proxy
+RULE-SET,https://raw.githubusercontent.com/rrrryan-ted/clashrule/refs/heads/main/download.list,Proxy
+
+# --- Adblock (广告拦截) Rules ---
+RULE-SET,https://raw.githubusercontent.com/zsokami/ACL4SSR/main/BanProgramAD1.list,REJECT
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list,REJECT
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list,REJECT
+
+# --- FINAL Rule (兜底规则) ---
+FINAL,Proxy 
+# 注意：此处的 'Proxy' 也需要替换为您在 Shadowrocket 中用于兜底的策略组名称，例如：'Final_Proxy' 或 'Select' 等。
