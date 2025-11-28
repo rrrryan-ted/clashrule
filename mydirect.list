@@ -26,7 +26,7 @@ DOMAIN-SUFFIX,luv.xx.kg
 DOMAIN-SUFFIX,ryx.xx.kg
 DOMAIN-SUFFIX,luvc.dpdns.org
 DOMAIN-SUFFIX,luvv.dpdns.org
-DOMAIN-SUFFIX,ttlife.dpdns.org
+#DOMAIN-SUFFIX,ttlife.dpdns.org
 
 # Dynv6
 DOMAIN-SUFFIX,luvc.eu.cc
