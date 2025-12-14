@@ -55,6 +55,7 @@ DOMAIN-SUFFIX,suno.com
 DOMAIN-SUFFIX,vision.ai
 DOMAIN-SUFFIX,ace.ai
 DOMAIN-SUFFIX,fin.ai
+DOMAIN-SUFFIX,lmstudio.ai
 
 # Notes:
 # - Added keywords for Gemini, Grok, Jasper, and Perplexity due to their prominence in 2025 AI landscape.
