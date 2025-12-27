@@ -28,10 +28,10 @@ DOMAIN-SUFFIX,cdt-ec.com
 DOMAIN-SUFFIX,ronglian.com
 
 #AirPort Website
-DOMAIN-SUFFIX,whtjdasha.com
-DOMAIN-SUFFIX,hongxingdl.com
-DOMAIN-SUFFIX,xmancdn.com
-DOMAIN-SUFFIX,flowercloud.net
+DOMAIN-SUFFIX,whtjdasha.com #nb
+DOMAIN-SUFFIX,hongxingdl.com #hx
+DOMAIN-SUFFIX,xmancdn.com #fcnodes
+DOMAIN-SUFFIX,flowercloud.net #fc
 
 # DNSHE
 DOMAIN-SUFFIX,ryn.cc.cd
