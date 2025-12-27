@@ -4,18 +4,21 @@ DOMAIN-SUFFIX,luvc.cc
 DOMAIN-SUFFIX,luvc.top
 
 # Tools
-DOMAIN-SUFFIX,eslink.cc
 DOMAIN-SUFFIX,naura.com
 DOMAIN-SUFFIX,bmmmd.com
 DOMAIN-SUFFIX,aspose.app
-DOMAIN-SUFFIX,tzfile.com
 DOMAIN-SUFFIX,1panel.live
-DOMAIN-SUFFIX,hetushu.com
 DOMAIN-SUFFIX,vumstar.com
 DOMAIN-SUFFIX,chiphell.com
 DOMAIN-SUFFIX,koolcenter.com
 DOMAIN-SUFFIX,aliyundrive.cloud
 DOMAIN-SUFFIX,microsoftpersonalcontent.com
+
+# LocalLife
+DOMAIN-SUFFIX,eslink.cc
+DOMAIN-SUFFIX,tzfile.com
+DOMAIN-SUFFIX,hetushu.com
+DOMAIN-SUFFIX,zizhuxitong.com
 
 # Work
 DOMAIN-SUFFIX,jczh.com
