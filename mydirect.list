@@ -15,10 +15,10 @@ DOMAIN-SUFFIX,aliyundrive.cloud
 DOMAIN-SUFFIX,microsoftpersonalcontent.com
 
 # Local Life
-DOMAIN-SUFFIX,eslink.cc
-DOMAIN-SUFFIX,tzfile.com
-DOMAIN-SUFFIX,hetushu.com
-DOMAIN-SUFFIX,zizhuxitong.com
+DOMAIN-SUFFIX,eslink.cc #百川燃气
+DOMAIN-SUFFIX,tzfile.com #团长资源
+DOMAIN-SUFFIX,hetushu.com #和图书
+DOMAIN-SUFFIX,zizhuxitong.com #自助洗车
 
 # Work
 DOMAIN-SUFFIX,jczh.com
