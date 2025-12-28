@@ -5,7 +5,7 @@ DOMAIN-SUFFIX,luvc.top
 
 # Tools
 DOMAIN-SUFFIX,naura.com
-DOMAIN-SUFFIX,bmmmd.com ;猫抓
+DOMAIN-SUFFIX,bmmmd.com
 DOMAIN-SUFFIX,aspose.app
 DOMAIN-SUFFIX,1panel.live
 DOMAIN-SUFFIX,vumstar.com
@@ -15,10 +15,10 @@ DOMAIN-SUFFIX,aliyundrive.cloud
 DOMAIN-SUFFIX,microsoftpersonalcontent.com
 
 # Local Life
-DOMAIN-SUFFIX,eslink.cc #百川燃气
-DOMAIN-SUFFIX,tzfile.com #团长资源
-DOMAIN-SUFFIX,hetushu.com #和图书
-DOMAIN-SUFFIX,zizhuxitong.com #自助洗车
+DOMAIN-SUFFIX,eslink.cc
+DOMAIN-SUFFIX,tzfile.com
+DOMAIN-SUFFIX,hetushu.com
+DOMAIN-SUFFIX,zizhuxitong.com
 
 # Work
 DOMAIN-SUFFIX,jczh.com
@@ -28,10 +28,10 @@ DOMAIN-SUFFIX,cdt-ec.com
 DOMAIN-SUFFIX,ronglian.com
 
 #AirPort Website
-DOMAIN-SUFFIX,whtjdasha.com #nb
-DOMAIN-SUFFIX,hongxingdl.com #hx
-DOMAIN-SUFFIX,xmancdn.com #fcnodes
-DOMAIN-SUFFIX,flowercloud.net #fc
+DOMAIN-SUFFIX,whtjdasha.com
+DOMAIN-SUFFIX,hongxingdl.com
+DOMAIN-SUFFIX,xmancdn.com
+DOMAIN-SUFFIX,flowercloud.net
 
 # DNSHE.COM
 DOMAIN-SUFFIX,dnshe.com
