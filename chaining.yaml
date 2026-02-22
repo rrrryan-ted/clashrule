@@ -23,50 +23,59 @@ tun:
   stack: system
   auto-route: true
   auto-detect-interface: true
-  dns-hijack: [any:53, "tcp://any:53"]
+  # --- 精准劫持优化 ---
+  # 剔除 any:53，明确指定只劫持发往主路由/网关的 DNS 请求。
+  # 这样发往局域网内其他设备（如特定 Docker 容器或 NAS 自带 DNS 服务）的解析就不会被误伤。
+  dns-hijack:
+    - 192.168.1.1:53          # 替换为你实际的路由器 IP
+    - "tcp://192.168.1.1:53"  # 替换为你实际的路由器 IP
 
 # ----------------------------------------------------------
 # 2. DNS 防泄漏核心
 # ----------------------------------------------------------
+# ----------------------------------------------------------
+# 2. DNS 防泄漏核心 (已修复)
+# ----------------------------------------------------------
 dns:
   enable: true
   listen: 0.0.0.0:1053
+  ipv6: false
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
-  # 关键点 1：必须使用纯 IP 形式的 DNS，用于解析后面所有的 DoH 域名
+  
+  # 建议添加常用 fake-ip 过滤，避免本地网络设备、NTP 时间同步等异常
+  fake-ip-filter:
+    - "*.lan"
+    - "*.localdomain"
+    - "+.stun.*.*"
+    - "+.ntp.*.*"
+    - "time.*.com"
+    - "time.*.gov"
+    - "time.*.edu.cn"
+
+  # 基础 DNS，仅用于解析 DoH 域名的 IP，用国内 DNS 即可
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
-    - 1.1.1.1
-    - 8.8.8.8
-  
-  # 关键点 2：nameserver 负责国内域名和默认解析
-  nameserver:
+
+  # 【防漏核心 1】代理服务器专用解析，走国内直连最快
+  proxy-server-nameserver:
     - https://dns.alicdn.com/dns-query
-    - https://doh.pub/dns-query
-  
-  # 关键点 3：fallback 负责国外域名的防污染解析（fake-ip 下必选，防止后端判定错误）
-  fallback:
+    - tls://223.5.5.5
+
+  # 【防漏核心 2】默认 DNS（兜底 DNS）必须是可信的境外 DNS！
+  # 任何未命中下方 policy 的未知域名，全军发往境外 DNS，绝不告诉国内 ISP。
+  nameserver:
     - https://dns.google/dns-query
     - https://1.1.1.1/dns-query
-    - tls://8.8.4.4
-  
-  # 关键点 4：解析代理服务器（机场/自建）专用，防止死循环
-  proxy-server-nameserver:
-    - https://dns.alicdn.com/dns-query # 优先用国内 DoH 解析代理域名，速度最快
-    - 223.5.5.5
-    - 202.175.3.8 # 你保留的特定 DNS
-  
-  # 关键点 5：强制分流策略
+
+  # 【防漏核心 3】精准分流：只有明确是国内的域名，才允许发给国内 DNS 解析
   nameserver-policy:
-    "geosite:cn,private": [https://dns.alicdn.com/dns-query, https://doh.pub/dns-query]
-    "geosite:gfw,google,netflix,tiktok,telegram,twitter": [https://dns.google/dns-query, https://1.1.1.1/dns-query]
-  
-  # 关键点 6：配置嗅探，防止 DNS 劫持
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-    ipcidr: [240.0.0.0/4]
+    "geosite:cn,private,apple,microsoft": [https://dns.alicdn.com/dns-query, https://doh.pub/dns-query]
+    # 利用你引入的规则集进一步明确国内域名走国内 DNS
+    "rule-set:china_domain": [https://dns.alicdn.com/dns-query, https://doh.pub/dns-query]
+
+  # 彻底删除 fallback 和 fallback-filter，在 Meta 中不需要旧时代的并发查询了。
 
 # ----------------------------------------------------------
 # 3. 代理集合 (4个机场 + 1个自建)
@@ -74,31 +83,31 @@ dns:
 proxy-providers:
   Provider-01:
     type: http
-    url: "xxxxxxxxxxxxxxxxxxxxx"
+    url: "xxxxxxxxxxxxxxxxxxaaaaaaaaaaaaxxxxxxxxxxxxxxxxxxaaaaaaaaaaaa"
     interval: 3600
     path: ./proxies/p1.yaml
     health-check: {enable: true, interval: 600, url: https://www.gstatic.com/generate_204}
   Provider-02:
     type: http
-    url: "xxxxxxxxxxxxxxxxxxxxx"
+    url: "xxxxxxxxxxxxxxxxxxaaaaaaaaaaaaxxxxxxxxxxxxxxxxxxaaaaaaaaaaaa"
     interval: 3600
     path: ./proxies/p2.yaml
     health-check: {enable: true, interval: 600, url: https://www.gstatic.com/generate_204}
   Provider-03:
     type: http
-    url: "xxxxxxxxxxxxxxxxxxxxx"
+    url: "xxxxxxxxxxxxxxxxxxaaaaaaaaaaaaxxxxxxxxxxxxxxxxxxaaaaaaaaaaaa"
     interval: 3600
     path: ./proxies/p3.yaml
     health-check: {enable: true, interval: 600, url: https://www.gstatic.com/generate_204}
   Provider-04:
     type: http
-    url: "xxxxxxxxxxxxxxxxxxxxx"
+    url: "xxxxxxxxxxxxxxxxxxaaaaaaaaaaaaxxxxxxxxxxxxxxxxxxaaaaaaaaaaaa"
     interval: 3600
     path: ./proxies/p4.yaml
     health-check: {enable: true, interval: 600, url: https://www.gstatic.com/generate_204}
   Self-Built:
     type: http
-    url: "xxxxxxxxxxxxxxxxxxxxx"
+    url: "xxxxxxxxxxxxxxxxxxaaaaaaaaaaaaxxxxxxxxxxxxxxxxxxaaaaaaaaaaaa"
     interval: 3600
     path: ./proxies/sb.yaml
     health-check: {enable: true, interval: 600, url: https://www.gstatic.com/generate_204}
@@ -107,22 +116,26 @@ proxy-providers:
 # 4. 策略组 (已优化入口节点逻辑)
 # ----------------------------------------------------------
 proxy-groups:
+  # --- 业务分流组 ---
+  - name: 拥抱自由
+    type: select
+    proxies: [自动选择, 🏠 自建节点, 🔗 链式落地, 香港节点, 台湾节点, 狮城节点, 日韩节点, 美国节点, 欧盟节点, 其他节点, 无限流量]
+
   # --- 入口节点：只从 Provider 筛选具体物理节点，禁止嵌套其他组 ---
   - name: 🚪 入口节点
     type: select
     use: [Provider-01, Provider-02, Provider-03, Provider-04, Self-Built]
-    filter: "🇭🇰|🇸🇬|🇯🇵|🇹🇼" # 建议只选择延迟低的近场节点作为入口
+    filter: "🇭🇰|🇹🇼|🇯🇵|🇸🇬" # 建议只选择延迟低的近场节点作为入口
+
+  - name: 🏠 自建节点
+    type: select
+    use: [Self-Built] # 引用你 Sub-Store 的那个订阅
 
   # --- 落地节点：通过入口进行拨号 ---
   - name: 🔗 链式落地
     type: select
     dialer-proxy: 🚪 入口节点
     use: [Self-Built]
-
-  # --- 业务分流组 ---
-  - name: 拥抱自由
-    type: select
-    proxies: [自动选择, 🔗 链式落地, 香港节点, 台湾节点, 狮城节点, 日韩节点, 美国节点, 欧盟节点, 其他节点, 无限流量]
 
   - name: 自动选择
     type: url-test
@@ -372,20 +385,39 @@ rule-providers:
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list"
     path: ./ruleset/gfw.yaml
     interval: 86400
+
 # ----------------------------------------------------------
-# 6. 路由规则 (严格优先级顺序)
+# 6. 路由规则 (严格优先级顺序 - 已针对你的需求优化)
 # ----------------------------------------------------------
 rules:
+  # --- 1. 救活被封 VPS (最高优先级，严禁下移) ---
   - DOMAIN,idc-us.tedzhao.eu.org,🚪 入口节点,no-resolve
   - IP-CIDR,198.23.190.46/32,🚪 入口节点,no-resolve
-  - DOMAIN-SUFFIX,hongxingyunmovie.vip,无限流量
+
+  # --- 2. 广告拦截 (核心修改：必须提权到普通域名分流之前！) ---
   - RULE-SET,ban_ad_1,广告拦截
   - RULE-SET,ban_ad_2,广告拦截
+
+  # --- 3. 国内 AI 走代理 (尊重隐私，防止暴露真实 IP) ---
+  - DOMAIN-KEYWORD,deepseek,拥抱自由
+  - DOMAIN-KEYWORD,qwen,拥抱自由
+
+  # --- 4. 强制直连黑名单 (必须放在广告拦截之后，防止广告漏网) ---
+  - DOMAIN-SUFFIX,cn,DIRECT
+  - DOMAIN-KEYWORD,alicdn,DIRECT
+  - DOMAIN-KEYWORD,alipay,DIRECT
+  - DOMAIN-KEYWORD,taobao,DIRECT
+  - DOMAIN-KEYWORD,baidu,DIRECT
+
+  # --- 5. 特定业务与海外分流 ---
+  - DOMAIN-SUFFIX,hongxingyunmovie.vip,无限流量
   - RULE-SET,ai_list,人工智能
   - RULE-SET,netflix_list,Netflix
   - RULE-SET,tiktok_list,TikTok
   - RULE-SET,twitter_list,Twitter
   - RULE-SET,onedrive_list,Onedrive
+
+  # --- 6. 中国区直连规则集 ---
   - RULE-SET,mydirect,DIRECT
   - RULE-SET,lan_list,DIRECT
   - RULE-SET,china_domain,DIRECT
@@ -396,7 +428,12 @@ rules:
   - RULE-SET,google_cn,DIRECT
   - RULE-SET,steam_cn,DIRECT
   - RULE-SET,download_list,DIRECT
+
+  # --- 7. 代理/翻墙规则集 ---
   - RULE-SET,mywebsite,拥抱自由
   - RULE-SET,proxy_gfw,拥抱自由
-  - GEOIP,CN,DIRECT,no-resolve
+
+  # --- 8. 最终兜底规则 ---
+  - GEOIP,LAN,DIRECT,no-resolve
+  - GEOIP,CN,DIRECT
   - MATCH,漏网之鱼
