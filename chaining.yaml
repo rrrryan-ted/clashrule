@@ -1,0 +1,402 @@
+# ==========================================================
+# Mihomo (Clash.Meta) 最终全功能全接管配置文件
+# 特性：新版 dialer-proxy 链式代理 (入口节点直连化)
+# ==========================================================
+
+port: 7890
+socks-port: 7891
+mixed-port: 7893
+tproxy-port: 7894
+ipv6: false
+mode: rule
+log-level: info
+allow-lan: true
+unified-delay: true
+external-controller: 0.0.0.0:9090
+secret: "123456"
+
+# ----------------------------------------------------------
+# 1. 透明代理接管 (Tun 模式)
+# ----------------------------------------------------------
+tun:
+  enable: true
+  stack: system
+  auto-route: true
+  auto-detect-interface: true
+  dns-hijack: [any:53, "tcp://any:53"]
+
+# ----------------------------------------------------------
+# 2. DNS 防泄漏核心
+# ----------------------------------------------------------
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  # 关键点 1：必须使用纯 IP 形式的 DNS，用于解析后面所有的 DoH 域名
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - 1.1.1.1
+    - 8.8.8.8
+  
+  # 关键点 2：nameserver 负责国内域名和默认解析
+  nameserver:
+    - https://dns.alicdn.com/dns-query
+    - https://doh.pub/dns-query
+  
+  # 关键点 3：fallback 负责国外域名的防污染解析（fake-ip 下必选，防止后端判定错误）
+  fallback:
+    - https://dns.google/dns-query
+    - https://1.1.1.1/dns-query
+    - tls://8.8.4.4
+  
+  # 关键点 4：解析代理服务器（机场/自建）专用，防止死循环
+  proxy-server-nameserver:
+    - https://dns.alicdn.com/dns-query # 优先用国内 DoH 解析代理域名，速度最快
+    - 223.5.5.5
+    - 202.175.3.8 # 你保留的特定 DNS
+  
+  # 关键点 5：强制分流策略
+  nameserver-policy:
+    "geosite:cn,private": [https://dns.alicdn.com/dns-query, https://doh.pub/dns-query]
+    "geosite:gfw,google,netflix,tiktok,telegram,twitter": [https://dns.google/dns-query, https://1.1.1.1/dns-query]
+  
+  # 关键点 6：配置嗅探，防止 DNS 劫持
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr: [240.0.0.0/4]
+
+# ----------------------------------------------------------
+# 3. 代理集合 (4个机场 + 1个自建)
+# ----------------------------------------------------------
+proxy-providers:
+  Provider-01:
+    type: http
+    url: "xxxxxxxxxxxxxxxxxxxxx"
+    interval: 3600
+    path: ./proxies/p1.yaml
+    health-check: {enable: true, interval: 600, url: https://www.gstatic.com/generate_204}
+  Provider-02:
+    type: http
+    url: "xxxxxxxxxxxxxxxxxxxxx"
+    interval: 3600
+    path: ./proxies/p2.yaml
+    health-check: {enable: true, interval: 600, url: https://www.gstatic.com/generate_204}
+  Provider-03:
+    type: http
+    url: "xxxxxxxxxxxxxxxxxxxxx"
+    interval: 3600
+    path: ./proxies/p3.yaml
+    health-check: {enable: true, interval: 600, url: https://www.gstatic.com/generate_204}
+  Provider-04:
+    type: http
+    url: "xxxxxxxxxxxxxxxxxxxxx"
+    interval: 3600
+    path: ./proxies/p4.yaml
+    health-check: {enable: true, interval: 600, url: https://www.gstatic.com/generate_204}
+  Self-Built:
+    type: http
+    url: "xxxxxxxxxxxxxxxxxxxxx"
+    interval: 3600
+    path: ./proxies/sb.yaml
+    health-check: {enable: true, interval: 600, url: https://www.gstatic.com/generate_204}
+
+# ----------------------------------------------------------
+# 4. 策略组 (已优化入口节点逻辑)
+# ----------------------------------------------------------
+proxy-groups:
+  # --- 入口节点：只从 Provider 筛选具体物理节点，禁止嵌套其他组 ---
+  - name: 🚪 入口节点
+    type: select
+    use: [Provider-01, Provider-02, Provider-03, Provider-04, Self-Built]
+    filter: "🇭🇰|🇸🇬|🇯🇵|🇹🇼" # 建议只选择延迟低的近场节点作为入口
+
+  # --- 落地节点：通过入口进行拨号 ---
+  - name: 🔗 链式落地
+    type: select
+    dialer-proxy: 🚪 入口节点
+    use: [Self-Built]
+
+  # --- 业务分流组 ---
+  - name: 拥抱自由
+    type: select
+    proxies: [自动选择, 🔗 链式落地, 香港节点, 台湾节点, 狮城节点, 日韩节点, 美国节点, 欧盟节点, 其他节点, 无限流量]
+
+  - name: 自动选择
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 60
+    use: [Provider-01, Provider-02, Provider-03, Provider-04, Self-Built]
+
+  - name: 人工智能
+    type: select
+    proxies: [🔗 链式落地, 台湾节点, 狮城节点, 日韩节点, 美国节点, 欧盟节点, 其他节点, 拥抱自由, 自动选择, 无限流量]
+
+  - name: Netflix
+    type: select
+    proxies: [🔗 链式落地, 香港节点, 台湾节点, 狮城节点, 日韩节点, 美国节点, 欧盟节点, 其他节点, 拥抱自由, 自动选择, 无限流量]
+
+  - name: Onedrive
+    type: select
+    proxies: [香港节点, 台湾节点, 狮城节点, 日韩节点, 美国节点, 欧盟节点, 其他节点, 拥抱自由, 自动选择, 无限流量]
+
+  - name: TikTok
+    type: select
+    proxies: [香港节点, 台湾节点, 狮城节点, 日韩节点, 美国节点, 欧盟节点, 其他节点, 拥抱自由, 自动选择, 无限流量]
+
+  - name: Twitter
+    type: select
+    proxies: [香港节点, 台湾节点, 狮城节点, 日韩节点, 美国节点, 其他节点, 其他节点, 拥抱自由, 自动选择, 无限流量]
+
+  # --- 地区正则筛选组 ---
+  - name: 香港节点
+    type: url-test
+    filter: "🇭🇰(?!.*(?!🇨🇳)[🇦-🇿]{2})"
+    use: [Provider-01, Provider-02, Provider-03, Provider-04, Self-Built]
+    url: https://www.gstatic.com/generate_204
+    interval: 60
+
+  - name: 台湾节点
+    type: url-test
+    filter: "🇹🇼(?!.*(?!🇨🇳)[🇦-🇿]{2})"
+    use: [Provider-01, Provider-02, Provider-03, Provider-04, Self-Built]
+    url: https://www.gstatic.com/generate_204
+    interval: 60
+
+  - name: 狮城节点
+    type: url-test
+    filter: "🇸🇬(?!.*[🇦-🇿]{2})"
+    use: [Provider-01, Provider-02, Provider-03, Provider-04, Self-Built]
+    url: https://www.gstatic.com/generate_204
+    interval: 60
+
+  - name: 日韩节点
+    type: url-test
+    filter: "(🇯🇵|🇰🇷)(?!.*[🇦-🇿]{2})"
+    use: [Provider-01, Provider-02, Provider-03, Provider-04, Self-Built]
+    url: https://www.gstatic.com/generate_204
+    interval: 60
+
+  - name: 美国节点
+    type: url-test
+    filter: "(🇺🇸|🇺🇲)(?!.*[🇦-🇿]{2})"
+    use: [Provider-01, Provider-02, Provider-03, Provider-04, Self-Built]
+    url: https://www.gstatic.com/generate_204
+    interval: 60
+
+  - name: 欧盟节点
+    type: url-test
+    filter: "(🇦🇹|🇧🇪|🇧🇬|🇭🇷|🇨🇾|🇨🇿|🇩🇰|🇪🇪|🇫🇮|🇫🇷|🇩🇪|🇬🇷|🇭🇺|🇮🇪|🇮🇹|🇱🇻|🇱🇹|🇱🇺|🇲🇹|🇳🇱|🇵🇱|🇵🇹|🇷🇴|🇸🇰|🇸🇮|🇪🇸|🇸🇪)(?!.*[🇦-🇿]{2})"
+    use: [Provider-01, Provider-02, Provider-03, Provider-04, Self-Built]
+    url: https://www.gstatic.com/generate_204
+    interval: 60
+
+  - name: 无限流量
+    type: url-test
+    filter: "(🇱🇹)(?!.*[🇦-🇿]{2})"
+    use: [Provider-01, Provider-02, Provider-03, Provider-04, Self-Built]
+    url: https://www.gstatic.com/generate_204
+    interval: 60
+
+  - name: 其他节点
+    type: url-test
+    filter: "^(?!.*(🇨🇳|🇭🇰|🇹🇼|🇸🇬|🇯🇵|🇰🇷|🇺🇸|🇺🇲|🇦🇹|🇧🇪|🇧🇬|🇭🇷|🇨🇾|🇨🇿|🇩🇰|🇪🇪|🇫🇮|🇫🇷|🇩🇪|🇬🇷|🇭🇺|🇮🇪|🇮🇹|🇱🇻|🇱🇹|🇱🇺|🇲🇹|🇳🇱|🇵🇱|🇵🇹|🇷🇴|🇸🇰|🇸🇮|🇪🇸|🇸🇪)(?!.*[🇦-🇿]{2}))"
+    use: [Provider-01, Provider-02, Provider-03, Provider-04, Self-Built]
+    url: https://www.gstatic.com/generate_204
+    interval: 60
+
+  # (此处省略 台湾、狮城、日韩、欧盟、无限流量、其他节点 组，逻辑与上述一致)
+
+  - name: 广告拦截
+    type: select
+    proxies: [REJECT, DIRECT]
+
+  - name: 漏网之鱼
+    type: select
+    proxies: [DIRECT, 🔗 链式落地, 拥抱自由, 自动选择]
+
+# ----------------------------------------------------------
+# 5. 远程规则集 (20条规则完整还原)
+# ----------------------------------------------------------
+rule-providers:
+  ban_ad_1:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list"
+    path: ./ruleset/ad2.yaml
+    interval: 86400
+
+  ban_ad_2:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list"
+    path: ./ruleset/ad3.yaml
+    interval: 86400
+
+  ai_list:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/rrrryan-ted/clashrule/refs/heads/main/ai.list"
+    path: ./ruleset/ai.yaml
+    interval: 86400
+
+  netflix_list:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Netflix/Netflix.list"
+    path: ./ruleset/nf.yaml
+    interval: 86400
+
+  tiktok_list:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TikTok/TikTok.list"
+    path: ./ruleset/tk.yaml
+    interval: 86400
+
+  twitter_list:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Twitter/Twitter.list"
+    path: ./ruleset/tw.yaml
+    interval: 86400
+
+  onedrive_list:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OneDrive/OneDrive.list"
+    path: ./ruleset/od.yaml
+    interval: 86400
+
+  mydirect:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/rrrryan-ted/clashrule/refs/heads/main/mydirect.list"
+    path: ./ruleset/dir1.yaml
+    interval: 86400
+
+  lan_list:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/rrrryan-ted/clashrule/refs/heads/main/LocalAreaNetwork.list"
+    path: ./ruleset/lan.yaml
+    interval: 86400
+
+  china_domain:
+    type: http
+    behavior: domain
+    format: text
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list"
+    path: ./ruleset/cn_dom.yaml
+    interval: 86400
+
+  china_ip:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list"
+    path: ./ruleset/cn_ip.yaml
+    interval: 86400
+
+  china_only:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/zsokami/ACL4SSR/main/ChinaOnly.list"
+    path: ./ruleset/cn_only.yaml
+    interval: 86400
+
+  unban_1:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/zsokami/ACL4SSR/main/UnBan1.list"
+    path: ./ruleset/un1.yaml
+    interval: 86400
+
+  unban_2:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list"
+    path: ./ruleset/un2.yaml
+    interval: 86400
+
+  google_cn:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/zsokami/ACL4SSR/main/GoogleCN.list"
+    path: ./ruleset/g_cn.yaml
+    interval: 86400
+
+  steam_cn:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/SteamCN.list"
+    path: ./ruleset/st_cn.yaml
+    interval: 86400
+
+  download_list:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/rrrryan-ted/clashrule/refs/heads/main/download.list"
+    path: ./ruleset/dl.yaml
+    interval: 86400
+
+  mywebsite:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/rrrryan-ted/clashrule/refs/heads/main/mywebsite.list"
+    path: ./ruleset/myweb.yaml
+    interval: 86400
+
+  proxy_gfw:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list"
+    path: ./ruleset/gfw.yaml
+    interval: 86400
+# ----------------------------------------------------------
+# 6. 路由规则 (严格优先级顺序)
+# ----------------------------------------------------------
+rules:
+  - DOMAIN,idc-us.tedzhao.eu.org,🚪 入口节点,no-resolve
+  - IP-CIDR,198.23.190.46/32,🚪 入口节点,no-resolve
+  - DOMAIN-SUFFIX,hongxingyunmovie.vip,无限流量
+  - RULE-SET,ban_ad_1,广告拦截
+  - RULE-SET,ban_ad_2,广告拦截
+  - RULE-SET,ai_list,人工智能
+  - RULE-SET,netflix_list,Netflix
+  - RULE-SET,tiktok_list,TikTok
+  - RULE-SET,twitter_list,Twitter
+  - RULE-SET,onedrive_list,Onedrive
+  - RULE-SET,mydirect,DIRECT
+  - RULE-SET,lan_list,DIRECT
+  - RULE-SET,china_domain,DIRECT
+  - RULE-SET,china_ip,DIRECT
+  - RULE-SET,china_only,DIRECT
+  - RULE-SET,unban_1,DIRECT
+  - RULE-SET,unban_2,DIRECT
+  - RULE-SET,google_cn,DIRECT
+  - RULE-SET,steam_cn,DIRECT
+  - RULE-SET,download_list,DIRECT
+  - RULE-SET,mywebsite,拥抱自由
+  - RULE-SET,proxy_gfw,拥抱自由
+  - GEOIP,CN,DIRECT,no-resolve
+  - MATCH,漏网之鱼
