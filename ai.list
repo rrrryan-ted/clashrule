@@ -12,15 +12,13 @@ DOMAIN-SUFFIX,openaiapi-site.azureedge.net
 DOMAIN-SUFFIX,sora.com
 
 # 2. Anthropic (Claude)
-DOMAIN-KEYWORD,anthropic
-DOMAIN-KEYWORD,claude
 DOMAIN-SUFFIX,anthropic.com
 DOMAIN-SUFFIX,claude.ai
 DOMAIN-SUFFIX,claude.com
 DOMAIN-SUFFIX,claudeusercontent.com
 
 # 3. Google (Gemini / AI Studio / NotebookLM)
-# 使用精确 DOMAIN 匹配，避免 DOMAIN-KEYWORD,gemini 撕裂 google.com 流量
+# --- Gemini 核心 ---
 DOMAIN,gemini.google.com
 DOMAIN,aistudio.google.com
 DOMAIN,ai.google.dev
@@ -29,6 +27,17 @@ DOMAIN,notebooklm.google.com
 DOMAIN-SUFFIX,notebooklm.google
 DOMAIN-SUFFIX,makersuite.google.com
 DOMAIN-SUFFIX,bard.google.com
+# --- 认证与会话（必须与 Gemini 走同一出口）---
+DOMAIN,accounts.google.com
+DOMAIN,ogs.google.com
+DOMAIN,apis.google.com
+# --- Gemini 运行时依赖的 API / 静态资源 ---
+DOMAIN,www.googleapis.com
+DOMAIN,jnn-pa.googleapis.com
+DOMAIN,waa-pa.clients6.google.com
+DOMAIN,ssl.gstatic.com
+DOMAIN,lh3.googleusercontent.com
+DOMAIN,lh5.googleusercontent.com
 
 # 4. Microsoft (Copilot)
 DOMAIN,api.githubcopilot.com
@@ -37,10 +46,7 @@ DOMAIN,sydney.bing.com
 DOMAIN-SUFFIX,copilot.cloud.microsoft
 DOMAIN-SUFFIX,copilot.microsoft.com
 
-# 5. 其他主流独立与开源 AI (Grok, DeepSeek, Perplexity, Cursor 等)
-DOMAIN-KEYWORD,grok
-DOMAIN-KEYWORD,jasper
-DOMAIN-KEYWORD,perplexity
+# 5. 其他主流独立与开源 AI
 DOMAIN-SUFFIX,cerebras.ai
 DOMAIN-SUFFIX,coreweave.ai
 DOMAIN-SUFFIX,cursor.com
@@ -62,5 +68,4 @@ DOMAIN-SUFFIX,mistral.ai
 DOMAIN-SUFFIX,perplexity.ai
 DOMAIN-SUFFIX,qwen.ai
 DOMAIN-SUFFIX,suno.com
-DOMAIN-SUFFIX,vision.ai
 DOMAIN-SUFFIX,x.ai
