@@ -1,5 +1,6 @@
 # ==========================================
-# 优化版 AI 专属分流规则 (AI.list)
+# 纯净版 AI 专属分流规则 (AI.list)
+# 不包含易冲突的 Google 网页及验证服务
 # ==========================================
 
 # 1. OpenAI (ChatGPT / Sora / API)
@@ -12,41 +13,23 @@ DOMAIN-SUFFIX,openaiapi-site.azureedge.net
 DOMAIN-SUFFIX,sora.com
 
 # 2. Anthropic (Claude)
+DOMAIN-KEYWORD,anthropic
+DOMAIN-KEYWORD,claude
 DOMAIN-SUFFIX,anthropic.com
 DOMAIN-SUFFIX,claude.ai
 DOMAIN-SUFFIX,claude.com
 DOMAIN-SUFFIX,claudeusercontent.com
 
-# 3. Google (Gemini / AI Studio / NotebookLM)
-# --- Gemini 核心 ---
-DOMAIN,gemini.google.com
-DOMAIN,aistudio.google.com
-DOMAIN,ai.google.dev
-DOMAIN,generativelanguage.googleapis.com
-DOMAIN,notebooklm.google.com
-DOMAIN-SUFFIX,notebooklm.google
-DOMAIN-SUFFIX,makersuite.google.com
-DOMAIN-SUFFIX,bard.google.com
-# --- 认证与会话（必须与 Gemini 走同一出口）---
-DOMAIN,accounts.google.com
-DOMAIN,ogs.google.com
-DOMAIN,apis.google.com
-# --- Gemini 运行时依赖的 API / 静态资源 ---
-DOMAIN,www.googleapis.com
-DOMAIN,jnn-pa.googleapis.com
-DOMAIN,waa-pa.clients6.google.com
-DOMAIN,ssl.gstatic.com
-DOMAIN,lh3.googleusercontent.com
-DOMAIN,lh5.googleusercontent.com
-
-# 4. Microsoft (Copilot)
+# 3. Microsoft (Copilot)
 DOMAIN,api.githubcopilot.com
 DOMAIN,copilot-proxy.githubusercontent.com
 DOMAIN,sydney.bing.com
 DOMAIN-SUFFIX,copilot.cloud.microsoft
 DOMAIN-SUFFIX,copilot.microsoft.com
 
-# 5. 其他主流独立与开源 AI
+# 4. 其他主流独立与开源 AI
+DOMAIN-KEYWORD,grok
+DOMAIN-KEYWORD,perplexity
 DOMAIN-SUFFIX,cerebras.ai
 DOMAIN-SUFFIX,coreweave.ai
 DOMAIN-SUFFIX,cursor.com
@@ -60,12 +43,10 @@ DOMAIN-SUFFIX,grok.com
 DOMAIN-SUFFIX,groq.com
 DOMAIN,api.groq.com
 DOMAIN,console.groq.com
-DOMAIN-SUFFIX,jasper.ai
 DOMAIN-SUFFIX,jetbrains.ai
 DOMAIN-SUFFIX,lmstudio.ai
 DOMAIN-SUFFIX,meta.ai
 DOMAIN-SUFFIX,mistral.ai
 DOMAIN-SUFFIX,perplexity.ai
 DOMAIN-SUFFIX,qwen.ai
-DOMAIN-SUFFIX,suno.com
 DOMAIN-SUFFIX,x.ai
