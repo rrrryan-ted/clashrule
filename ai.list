@@ -20,19 +20,17 @@ DOMAIN-SUFFIX,claude.com
 DOMAIN-SUFFIX,claudeusercontent.com
 
 # 3. Google (Gemini / AI Studio / NotebookLM)
-# 仅包含 AI 核心业务，已剔除 gstatic / googleapis 等会撕裂全局 Google 流量的泛域名
-DOMAIN-KEYWORD,gemini
-DOMAIN,ai.google.dev
+# 使用精确 DOMAIN 匹配，避免 DOMAIN-KEYWORD,gemini 撕裂 google.com 流量
+DOMAIN,gemini.google.com
 DOMAIN,aistudio.google.com
+DOMAIN,ai.google.dev
 DOMAIN,generativelanguage.googleapis.com
-DOMAIN-SUFFIX,bard.google.com
-DOMAIN-SUFFIX,gemini.google.com
-DOMAIN-SUFFIX,makersuite.google.com
+DOMAIN,notebooklm.google.com
 DOMAIN-SUFFIX,notebooklm.google
-DOMAIN-SUFFIX,notebooklm.google.com
+DOMAIN-SUFFIX,makersuite.google.com
+DOMAIN-SUFFIX,bard.google.com
 
 # 4. Microsoft (Copilot)
-# 已精准定位 Copilot 接口，剔除全局 bing.com
 DOMAIN,api.githubcopilot.com
 DOMAIN,copilot-proxy.githubusercontent.com
 DOMAIN,sydney.bing.com
