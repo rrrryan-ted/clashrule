@@ -29,4 +29,3 @@ PROCESS-NAME,baidunetdisk.exe
 URL-REGEX,assets\d+\.xboxlive\.(com|cn)
 # Game
 PROCESS-NAME,launcher.exe
-PROCESS-NAME,GacRunner64.dll
