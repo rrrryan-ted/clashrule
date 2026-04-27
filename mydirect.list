@@ -86,7 +86,7 @@ IP-CIDR,188.119.64.21/32,no-resolve
 IP-CIDR,198.23.190.46/32,no-resolve
 IP-CIDR,204.44.125.197/32,no-resolve
 IP-CIDR,212.135.36.221/32,no-resolve
-IP-CIDR,216.23.92.78/32,no-resolve
+IP-CIDR,216.23.94.239/32,no-resolve
 
 # macOS地图app直连补充
 DOMAIN-SUFFIX,ls.apple.com,DIRECT
