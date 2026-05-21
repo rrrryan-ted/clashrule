@@ -30,6 +30,7 @@ DOMAIN-SUFFIX,copilot.microsoft.com
 # 4. 其他主流独立与开源 AI
 DOMAIN-KEYWORD,grok
 DOMAIN-KEYWORD,perplexity
+DOMAIN-SUFFIX,doubao.com
 DOMAIN-SUFFIX,cerebras.ai
 DOMAIN-SUFFIX,coreweave.ai
 DOMAIN-SUFFIX,cursor.com
