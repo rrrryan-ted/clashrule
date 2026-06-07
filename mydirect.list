@@ -76,10 +76,10 @@ IP-CIDR,82.39.250.29/32,no-resolve
 IP-CIDR,86.53.106.80/32,no-resolve
 IP-CIDR,91.233.10.119/32,no-resolve
 IP-CIDR,130.12.171.194/32,no-resolve
-IP-CIDR,140.245.97.144/32,no-resolve
+IP-CIDR,138.2.64.194/32,no-resolve
+IP-CIDR,138.3.221.139/32,no-resolve
 IP-CIDR,146.19.24.226/32,no-resolve
 IP-CIDR,149.202.79.99/32,no-resolve
-IP-CIDR,152.70.98.201/32,no-resolve
 IP-CIDR,154.9.238.212/32,no-resolve
 IP-CIDR,185.231.102.72/32,no-resolve
 IP-CIDR,185.255.93.193/32,no-resolve
