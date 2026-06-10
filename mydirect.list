@@ -15,6 +15,7 @@ DOMAIN-SUFFIX,aliyundrive.cloud
 # Local Life
 DOMAIN-SUFFIX,kxkj.vip
 DOMAIN-SUFFIX,eslink.cc
+DOMAIN-SUFFIX,eslink.com
 DOMAIN-SUFFIX,tzfile.com
 DOMAIN-SUFFIX,hetushu.com
 DOMAIN-SUFFIX,ydyy120.com
@@ -70,7 +71,7 @@ IP-CIDR,5.59.248.105/32,no-resolve
 IP-CIDR,23.140.140.84/32,no-resolve
 IP-CIDR,38.148.247.211/32,no-resolve
 IP-CIDR,45.87.43.76/32,no-resolve
-IP-CIDR,45.143.130.113/32,no-resolve
+IP-CIDR,45.143.130.112/32,no-resolve
 IP-CIDR,66.63.162.251/32,no-resolve
 IP-CIDR,82.39.250.29/32,no-resolve
 IP-CIDR,86.53.106.80/32,no-resolve
