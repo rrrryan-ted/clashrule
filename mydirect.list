@@ -32,9 +32,6 @@ DOMAIN-SUFFIX,ronglian.com
 DOMAIN-SUFFIX,isshuafang.com
 DOMAIN-SUFFIX,baishibiaoju.com
 
-#AirPort Website
-DOMAIN-SUFFIX,whtjdasha.com
-
 # DNSHE.COM
 DOMAIN-SUFFIX,dnshe.com
 DOMAIN-SUFFIX,ryn.cc.cd
@@ -45,6 +42,10 @@ DOMAIN-SUFFIX,cav.cc.cd
 DOMAIN-SUFFIX,cex.cc.cd
 DOMAIN-SUFFIX,1uv.cc.cd
 
+# KataBump
+DOMAIN-SUFFIX,jhao.kdns.fr
+DOMAIN-SUFFIX,ryn.kdns.fr
+
 # DigitalPlat
 DOMAIN-SUFFIX,acc.qzz.io
 DOMAIN-SUFFIX,luv.qzz.io
@@ -53,7 +54,6 @@ DOMAIN-SUFFIX,luv.xx.kg
 DOMAIN-SUFFIX,ryx.xx.kg
 
 # Dynv6
-DOMAIN-SUFFIX,luvc.eu.cc
 DOMAIN-SUFFIX,luvcc.v6.navy
 DOMAIN-SUFFIX,tyrun.dynv6.net
 
