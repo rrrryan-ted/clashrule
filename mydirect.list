@@ -94,10 +94,6 @@ IP-CIDR,216.23.94.239/32,no-resolve
 # macOS地图app直连补充
 DOMAIN-SUFFIX,ls.apple.com,DIRECT
 DOMAIN-SUFFIX,akadns.net,DIRECT
-
-# Google Play配套
-DOMAIN-SUFFIX,googleapis.cn
-DOMAIN-SUFFIX,xn--ngstr-lra8j.com
 DOMAIN-SUFFIX,akamaiedge.net,DIRECT
 DOMAIN-SUFFIX,akamai.net,DIRECT
 DOMAIN-SUFFIX,akamaitechnologies.com,DIRECT
