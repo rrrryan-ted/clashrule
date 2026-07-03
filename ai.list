@@ -1,10 +1,12 @@
 # ==========================================
 # 纯净版 AI 专属分流规则 (AI.list)
-# 不包含易冲突的 Google 网页及验证服务
+# 更新时间：2026 年 7 月
+# 注：不包含易冲突的 Google 网页、API 及验证服务
 # ==========================================
 
 # 1. OpenAI (ChatGPT / Sora / API)
 DOMAIN-KEYWORD,openai
+DOMAIN-SUFFIX,ai.com
 DOMAIN-SUFFIX,chatgpt.com
 DOMAIN-SUFFIX,oaistatic.com
 DOMAIN-SUFFIX,oaiusercontent.com
@@ -27,28 +29,60 @@ DOMAIN,sydney.bing.com
 DOMAIN-SUFFIX,copilot.cloud.microsoft
 DOMAIN-SUFFIX,copilot.microsoft.com
 
-# 4. 其他主流独立与开源 AI
-DOMAIN-KEYWORD,grok
-DOMAIN-KEYWORD,perplexity
-DOMAIN-SUFFIX,doubao.com
-DOMAIN-SUFFIX,dola.com
-DOMAIN-SUFFIX,cerebras.ai
-DOMAIN-SUFFIX,coreweave.ai
+# 4. 编程与开发辅助 AI (Cursor / Windsurf / v0 / Bolt 等)
 DOMAIN-SUFFIX,cursor.com
 DOMAIN-SUFFIX,cursor.sh
-DOMAIN-SUFFIX,deepseek.com
-DOMAIN-SUFFIX,difyai.com
-DOMAIN-SUFFIX,genspark.ai
+DOMAIN-SUFFIX,codeium.com
+DOMAIN-SUFFIX,windsurf.ai
+DOMAIN-SUFFIX,v0.dev
+DOMAIN-SUFFIX,bolt.new
+DOMAIN-SUFFIX,lovable.dev
 DOMAIN-SUFFIX,grazie.ai
 DOMAIN-SUFFIX,grazie.aws.intellij.net
+DOMAIN-SUFFIX,jetbrains.ai
+
+# 5. AI 搜索引擎与聚合平台 (Perplexity / Poe / Coze 等)
+DOMAIN-KEYWORD,perplexity
+DOMAIN-SUFFIX,perplexity.ai
+DOMAIN-SUFFIX,pplx.ai
+DOMAIN-SUFFIX,poe.com
+DOMAIN-SUFFIX,poecdn.net
+DOMAIN-SUFFIX,coze.com
+DOMAIN-SUFFIX,difyai.com
+DOMAIN-SUFFIX,genspark.ai
+DOMAIN-SUFFIX,dola.com
+
+# 6. 主流独立大模型与云算力平台 (Grok / DeepSeek / Meta / Mistral 等)
+DOMAIN-KEYWORD,grok
 DOMAIN-SUFFIX,grok.com
+DOMAIN-SUFFIX,x.ai
+DOMAIN-SUFFIX,deepseek.com
+DOMAIN-SUFFIX,meta.ai
+DOMAIN-SUFFIX,llama.meta.com
+DOMAIN-SUFFIX,mistral.ai
 DOMAIN-SUFFIX,groq.com
 DOMAIN,api.groq.com
 DOMAIN,console.groq.com
-DOMAIN-SUFFIX,jetbrains.ai
+DOMAIN-SUFFIX,cerebras.ai
+DOMAIN-SUFFIX,coreweave.ai
 DOMAIN-SUFFIX,lmstudio.ai
-DOMAIN-SUFFIX,meta.ai
-DOMAIN-SUFFIX,mistral.ai
-DOMAIN-SUFFIX,perplexity.ai
+DOMAIN-SUFFIX,huggingface.co
+DOMAIN-SUFFIX,hf.co
+DOMAIN-SUFFIX,ollama.com
+
+# 7. AI 视频、生图与多媒体 (Midjourney / Suno / Luma / Runway 等)
+DOMAIN-SUFFIX,midjourney.com
+DOMAIN-SUFFIX,suno.com
+DOMAIN-SUFFIX,suno.ai
+DOMAIN-SUFFIX,udio.com
+DOMAIN-SUFFIX,elevenlabs.io
+DOMAIN-SUFFIX,lumaai.com
+DOMAIN-SUFFIX,runwayml.com
+DOMAIN-SUFFIX,pika.art
+DOMAIN-SUFFIX,civitai.com
+DOMAIN-SUFFIX,klingai.com
+
+# 8. 国内厂商/出海大模型 (如无海外节点访问需求，可移至 Direct 规则)
+DOMAIN-SUFFIX,doubao.com
 DOMAIN-SUFFIX,qwen.ai
-DOMAIN-SUFFIX,x.ai
+DOMAIN-SUFFIX,hailuo.ai
