@@ -70,30 +70,19 @@ DOMAIN-SUFFIX,luv.ip-ddns.com
 DOMAIN-SUFFIX,ryn.ip-ddns.com
 
 # iperf3 测试直连 IP (新增的部分)
-IP-CIDR,5.59.248.105/32,no-resolve
-IP-CIDR,23.140.140.84/32,no-resolve
-IP-CIDR,38.148.247.211/32,no-resolve
-IP-CIDR,45.87.43.76/32,no-resolve
 IP-CIDR,45.143.130.112/32,no-resolve
+IP-CIDR,50.114.172.253/32,no-resolve
 IP-CIDR,66.63.162.251/32,no-resolve
 IP-CIDR,82.39.250.29/32,no-resolve
-IP-CIDR,86.53.106.80/32,no-resolve
 IP-CIDR,91.233.10.119/32,no-resolve
 IP-CIDR,130.12.171.194/32,no-resolve
 IP-CIDR,138.2.64.194/32,no-resolve
 IP-CIDR,138.3.221.139/32,no-resolve
-IP-CIDR,146.19.24.226/32,no-resolve
-IP-CIDR,149.202.79.99/32,no-resolve
-IP-CIDR,154.9.238.212/32,no-resolve
-IP-CIDR,185.231.102.72/32,no-resolve
-IP-CIDR,185.255.93.193/32,no-resolve
-IP-CIDR,188.119.64.21/32,no-resolve
 IP-CIDR,189.24.101.210/32,no-resolve
 IP-CIDR,194.58.66.240/32,no-resolve
-IP-CIDR,198.23.190.46/32,no-resolve
-IP-CIDR,204.44.125.197/32,no-resolve
 IP-CIDR,212.135.36.221/32,no-resolve
 IP-CIDR,216.23.94.239/32,no-resolve
+DOMAIN,ar1.deeprush.ai
 
 # macOS地图app直连补充
 DOMAIN-SUFFIX,ls.apple.com,DIRECT
