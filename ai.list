@@ -1,89 +1,178 @@
 # ==========================================
 # 纯净版 AI 专属分流规则 (AI.list)
-# 更新时间：2026 年 7 月
-# 注：不包含易冲突的 Google 网页、API 及验证服务
+# 核对日期：2026-10-01
+# 格式：Mihomo classical / text
+#
+# 原则：
+# 1. 只使用明确域名，不使用宽泛 DOMAIN-KEYWORD
+# 2. 不包含 Google AI 网页、API 和公共 Google 服务
+# 3. 不包含公共验证、登录、支付、统计及通用 CDN 后缀
+# 4. 专属 CDN / 存储主机使用 DOMAIN 精确匹配
+# 5. 国内及可选服务默认注释，按实际需求启用
+#
+# 注意：
+# 本文件不填写策略组名称，不使用 payload:
 # ==========================================
 
-# 1. OpenAI (ChatGPT / Sora / API)
-DOMAIN-KEYWORD,openai
-DOMAIN-SUFFIX,ai.com
-DOMAIN-SUFFIX,chatgpt.com
-DOMAIN-SUFFIX,oaistatic.com
-DOMAIN-SUFFIX,oaiusercontent.com
+# 1. OpenAI (ChatGPT / Codex / Sora / API)
 DOMAIN-SUFFIX,openai.com
-DOMAIN-SUFFIX,openaiapi-site.azureedge.net
+DOMAIN-SUFFIX,chatgpt.com
+DOMAIN-SUFFIX,chat.com
+DOMAIN-SUFFIX,oaistatic.com
+DOMAIN-SUFFIX,oaistatsig.com
+DOMAIN-SUFFIX,oaiusercontent.com
 DOMAIN-SUFFIX,sora.com
+DOMAIN,cdn.openaimerge.com
+DOMAIN,openaiapi-site.azureedge.net
+DOMAIN,openaiassets.blob.core.windows.net
+DOMAIN,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net
+DOMAIN,openaicom.imgix.net
+DOMAIN,openaicomproductionae4b.blob.core.windows.net
+DOMAIN,production-openaicom-storage.azureedge.net
+DOMAIN,openai.com.cdn.cloudflare.net
+DOMAIN-SUFFIX,chatgpt.livekit.cloud
 
-# 2. Anthropic (Claude)
-DOMAIN-KEYWORD,anthropic
-DOMAIN-KEYWORD,claude
+# 2. Anthropic (Claude / Claude Code / API / MCP)
 DOMAIN-SUFFIX,anthropic.com
 DOMAIN-SUFFIX,claude.ai
 DOMAIN-SUFFIX,claude.com
 DOMAIN-SUFFIX,claudeusercontent.com
+DOMAIN-SUFFIX,claudemcpclient.com
+DOMAIN-SUFFIX,claudemcpcontent.com
+DOMAIN-SUFFIX,clau.de
+DOMAIN,servd-anthropic-website.b-cdn.net
 
-# 3. Microsoft (Copilot)
-DOMAIN,api.githubcopilot.com
-DOMAIN,copilot-proxy.githubusercontent.com
-DOMAIN,sydney.bing.com
-DOMAIN-SUFFIX,copilot.cloud.microsoft
+# 3. Microsoft Copilot / GitHub Copilot
+DOMAIN-SUFFIX,copilot.com
 DOMAIN-SUFFIX,copilot.microsoft.com
+DOMAIN-SUFFIX,copilot.cloud.microsoft
+DOMAIN-SUFFIX,githubcopilot.com
+DOMAIN,copilot-proxy.githubusercontent.com
+DOMAIN,copilot-workspace.githubnext.com
+DOMAIN,copilotprodattachments.blob.core.windows.net
+DOMAIN,sydney.bing.com
 
-# 4. 编程与开发辅助 AI (Cursor / Windsurf / v0 / Bolt 等)
+# 4. 编程与开发辅助 AI
+# Cursor
 DOMAIN-SUFFIX,cursor.com
 DOMAIN-SUFFIX,cursor.sh
-DOMAIN-SUFFIX,codeium.com
+DOMAIN-SUFFIX,cursorapi.com
+DOMAIN-SUFFIX,cursor-cdn.com
+
+# Windsurf / Codeium
+DOMAIN-SUFFIX,windsurf.com
+DOMAIN-SUFFIX,windsurf.build
 DOMAIN-SUFFIX,windsurf.ai
+DOMAIN-SUFFIX,codeium.com
+DOMAIN-SUFFIX,codeiumdata.com
+
+# v0 / Bolt / Lovable
+DOMAIN-SUFFIX,v0.app
 DOMAIN-SUFFIX,v0.dev
 DOMAIN-SUFFIX,bolt.new
 DOMAIN-SUFFIX,lovable.dev
+
+# JetBrains AI
 DOMAIN-SUFFIX,grazie.ai
 DOMAIN-SUFFIX,grazie.aws.intellij.net
 DOMAIN-SUFFIX,jetbrains.ai
 
-# 5. AI 搜索引擎与聚合平台 (Perplexity / Poe / Coze 等)
-DOMAIN-KEYWORD,perplexity
+# Devin / CodeRabbit / Kiro / Qoder
+DOMAIN-SUFFIX,devin.ai
+DOMAIN-SUFFIX,coderabbit.ai
+DOMAIN,coderabbit.gallery.vsassets.io
+DOMAIN-SUFFIX,kiro.dev
+DOMAIN-SUFFIX,qoder.com
+
+# 5. AI 搜索、聚合与 Agent 平台
+# Perplexity
 DOMAIN-SUFFIX,perplexity.ai
+DOMAIN-SUFFIX,perplexity.com
 DOMAIN-SUFFIX,pplx.ai
+DOMAIN,ppl-ai-file-upload.s3.amazonaws.com
+DOMAIN,pplx-res.cloudinary.com
+
+# Poe / OpenRouter
 DOMAIN-SUFFIX,poe.com
 DOMAIN-SUFFIX,poecdn.net
+DOMAIN-SUFFIX,openrouter.ai
+
+# Coze / Dify / Genspark / Manus
 DOMAIN-SUFFIX,coze.com
+DOMAIN-SUFFIX,dify.ai
 DOMAIN-SUFFIX,difyai.com
 DOMAIN-SUFFIX,genspark.ai
-DOMAIN-SUFFIX,dola.com
+DOMAIN-SUFFIX,manus.im
+DOMAIN-SUFFIX,manuscdn.com
 
-# 6. 主流独立大模型与云算力平台 (Grok / DeepSeek / Meta / Mistral 等)
-DOMAIN-KEYWORD,grok
+# 其他独立 AI 平台
+DOMAIN-SUFFIX,arena.ai
+DOMAIN-SUFFIX,duck.ai
+DOMAIN-SUFFIX,youmind.com
+DOMAIN-SUFFIX,youmind.ai
+DOMAIN-SUFFIX,youmind.site
+
+# 6. 独立大模型与推理平台
+# Grok / xAI
 DOMAIN-SUFFIX,grok.com
 DOMAIN-SUFFIX,x.ai
-DOMAIN-SUFFIX,deepseek.com
+DOMAIN-SUFFIX,grok.x.com
+
+# Meta / Mistral / Groq / Cerebras / Cohere
 DOMAIN-SUFFIX,meta.ai
 DOMAIN-SUFFIX,llama.meta.com
 DOMAIN-SUFFIX,mistral.ai
 DOMAIN-SUFFIX,groq.com
-DOMAIN,api.groq.com
-DOMAIN,console.groq.com
 DOMAIN-SUFFIX,cerebras.ai
-DOMAIN-SUFFIX,coreweave.ai
-DOMAIN-SUFFIX,lmstudio.ai
+DOMAIN-SUFFIX,cohere.com
+DOMAIN-SUFFIX,cohere.ai
+
+# 推理聚合平台
+DOMAIN-SUFFIX,chutes.ai
+
+# 7. 模型社区、客户端与云算力
+# 以下部分可能产生较大的模型下载流量
 DOMAIN-SUFFIX,huggingface.co
 DOMAIN-SUFFIX,hf.co
+DOMAIN-SUFFIX,hf.space
+DOMAIN-SUFFIX,lmstudio.ai
 DOMAIN-SUFFIX,ollama.com
+DOMAIN-SUFFIX,coreweave.com
 
-# 7. AI 视频、生图与多媒体 (Midjourney / Suno / Luma / Runway 等)
+# 8. AI 视频、生图、音乐与语音
 DOMAIN-SUFFIX,midjourney.com
 DOMAIN-SUFFIX,suno.com
 DOMAIN-SUFFIX,suno.ai
 DOMAIN-SUFFIX,udio.com
 DOMAIN-SUFFIX,elevenlabs.io
+DOMAIN-SUFFIX,elevenlabs.com
 DOMAIN-SUFFIX,lumaai.com
 DOMAIN-SUFFIX,runwayml.com
 DOMAIN-SUFFIX,pika.art
 DOMAIN-SUFFIX,civitai.com
 DOMAIN-SUFFIX,klingai.com
+DOMAIN-SUFFIX,clipdrop.co
+DOMAIN-SUFFIX,openart.ai
+DOMAIN-SUFFIX,lovart.ai
+DOMAIN-SUFFIX,tripo3d.ai
 
-# 8. 国内厂商/出海大模型 (如无海外节点访问需求，可移至 Direct 规则)
-DOMAIN-SUFFIX,doubao.com
-DOMAIN-SUFFIX,qwen.ai
-DOMAIN-SUFFIX,hailuo.ai
-DOMAIN-SUFFIX,kimi.com
+# 9. 国内厂商及出海产品：按需启用
+# 如果需要海外节点访问，删除对应行开头的 "# "
+# 如果需要直连，将规则放入单独的 Direct 规则集
+
+# DOMAIN-SUFFIX,deepseek.com
+# DOMAIN-SUFFIX,doubao.com
+# DOMAIN-SUFFIX,qwen.ai
+# DOMAIN-SUFFIX,hailuo.ai
+# DOMAIN-SUFFIX,kimi.com
+# DOMAIN-SUFFIX,minimax.io
+# DOMAIN-SUFFIX,trae.ai
+
+# Dola / Cici：有使用需求时启用
+# DOMAIN-SUFFIX,dola.com
+# DOMAIN-SUFFIX,cici.com
+# DOMAIN-SUFFIX,ciciai.com
+# DOMAIN-SUFFIX,ciciaicdn.com
+
+# 10. 独立 ai.com 平台：不是 OpenAI
+# DOMAIN-SUFFIX,ai.com
