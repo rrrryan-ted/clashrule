@@ -119,6 +119,7 @@ DOMAIN-SUFFIX,x.ai
 DOMAIN-SUFFIX,grok.x.com
 
 # Meta / Mistral / Groq / Cerebras / Cohere
+DOMAIN-SUFFIX,muse.ai
 DOMAIN-SUFFIX,meta.ai
 DOMAIN-SUFFIX,llama.meta.com
 DOMAIN-SUFFIX,mistral.ai
