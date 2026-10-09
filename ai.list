@@ -161,19 +161,19 @@ DOMAIN-SUFFIX,tripo3d.ai
 # 如果需要海外节点访问，删除对应行开头的 "# "
 # 如果需要直连，将规则放入单独的 Direct 规则集
 
-# DOMAIN-SUFFIX,deepseek.com
-# DOMAIN-SUFFIX,doubao.com
-# DOMAIN-SUFFIX,qwen.ai
-# DOMAIN-SUFFIX,hailuo.ai
-# DOMAIN-SUFFIX,kimi.com
-# DOMAIN-SUFFIX,minimax.io
-# DOMAIN-SUFFIX,trae.ai
+DOMAIN-SUFFIX,deepseek.com
+DOMAIN-SUFFIX,doubao.com
+DOMAIN-SUFFIX,qwen.ai
+DOMAIN-SUFFIX,hailuo.ai
+DOMAIN-SUFFIX,kimi.com
+DOMAIN-SUFFIX,minimax.io
+DOMAIN-SUFFIX,trae.ai
 
 # Dola / Cici：有使用需求时启用
-# DOMAIN-SUFFIX,dola.com
-# DOMAIN-SUFFIX,cici.com
-# DOMAIN-SUFFIX,ciciai.com
-# DOMAIN-SUFFIX,ciciaicdn.com
+DOMAIN-SUFFIX,dola.com
+DOMAIN-SUFFIX,cici.com
+DOMAIN-SUFFIX,ciciai.com
+#DOMAIN-SUFFIX,ciciaicdn.com
 
 # 10. 独立 ai.com 平台：不是 OpenAI
-# DOMAIN-SUFFIX,ai.com
+DOMAIN-SUFFIX,ai.com
