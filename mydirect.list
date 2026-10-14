@@ -81,7 +81,6 @@ IP-CIDR,138.3.221.139/32,no-resolve
 IP-CIDR,189.24.101.210/32,no-resolve
 IP-CIDR,194.58.66.240/32,no-resolve
 IP-CIDR,194.110.174.165/32,no-resolve
-IP-CIDR,212.135.36.221/32,no-resolve
 IP-CIDR,216.23.94.239/32,no-resolve
 
 # macOS地图app直连补充
