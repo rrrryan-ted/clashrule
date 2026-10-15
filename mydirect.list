@@ -74,6 +74,7 @@ DOMAIN-SUFFIX,ryn.ip-ddns.com
 # iperf3 测试直连 IP (新增的部分)
 IP-CIDR,45.143.130.112/32,no-resolve
 IP-CIDR,50.114.172.253/32,no-resolve
+IP-CIDR,52.62.18.234/32,no-resolve
 IP-CIDR,66.63.162.251/32,no-resolve
 IP-CIDR,82.39.250.29/32,no-resolve
 IP-CIDR,91.233.10.119/32,no-resolve
