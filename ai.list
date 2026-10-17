@@ -127,6 +127,7 @@ DOMAIN-SUFFIX,groq.com
 DOMAIN-SUFFIX,cerebras.ai
 DOMAIN-SUFFIX,cohere.com
 DOMAIN-SUFFIX,cohere.ai
+DOMAIN-SUFFIX,metaaivm.com
 
 # 推理聚合平台
 DOMAIN-SUFFIX,chutes.ai
