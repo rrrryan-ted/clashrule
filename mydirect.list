@@ -75,7 +75,6 @@ DOMAIN-SUFFIX,ryn.ip-ddns.com
 # iperf3 测试直连 IP (新增的部分)
 IP-CIDR,13.238.168.251/32,no-resolve
 IP-CIDR,45.143.130.112/32,no-resolve
-IP-CIDR,50.114.172.253/32,no-resolve
 IP-CIDR,66.63.162.251/32,no-resolve
 IP-CIDR,82.39.250.29/32,no-resolve
 IP-CIDR,91.233.10.119/32,no-resolve
@@ -83,11 +82,9 @@ IP-CIDR,130.12.171.194/32,no-resolve
 IP-CIDR,138.2.64.194/32,no-resolve
 IP-CIDR,138.3.221.139/32,no-resolve
 IP-CIDR,152.175.118.18/32,no-resolve
-IP-CIDR,158.247.242.138/32,no-resolve
 IP-CIDR,189.24.101.210/32,no-resolve
 IP-CIDR,192.236.165.84/32,no-resolve
-IP-CIDR,194.58.66.240/32,no-resolve
-IP-CIDR,194.110.174.165/32,no-resolve
+IP-CIDR,192.238.243.235/32,no-resolve
 IP-CIDR,216.23.94.239/32,no-resolve
 
 # macOS地图app直连补充
