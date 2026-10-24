@@ -121,13 +121,13 @@ DOMAIN-SUFFIX,grok.x.com
 # Meta / Mistral / Groq / Cerebras / Cohere
 DOMAIN-SUFFIX,muse.ai
 DOMAIN-SUFFIX,meta.ai
+DOMAIN-SUFFIX,metaaivm.com
 DOMAIN-SUFFIX,llama.meta.com
 DOMAIN-SUFFIX,mistral.ai
 DOMAIN-SUFFIX,groq.com
 DOMAIN-SUFFIX,cerebras.ai
 DOMAIN-SUFFIX,cohere.com
 DOMAIN-SUFFIX,cohere.ai
-DOMAIN-SUFFIX,metaaivm.com
 
 # 推理聚合平台
 DOMAIN-SUFFIX,chutes.ai
