@@ -71,7 +71,7 @@ DOMAIN,ipv4.cloudns.net
 DOMAIN-SUFFIX,luv.ip-ddns.com
 DOMAIN-SUFFIX,ryn.ip-ddns.com
 
-# iperf3 测试直连 IP (新增的部分)
+# iperf3 测试直连 IP
 IP-CIDR,13.238.168.251/32,no-resolve
 IP-CIDR,45.143.130.112/32,no-resolve
 IP-CIDR,66.63.162.251/32,no-resolve
@@ -85,6 +85,8 @@ IP-CIDR,189.24.101.210/32,no-resolve
 IP-CIDR,192.236.165.84/32,no-resolve
 IP-CIDR,192.238.243.235/32,no-resolve
 IP-CIDR,216.23.94.239/32,no-resolve
+DOMAIN,twp.vpsnat.com
+DOMAIN,vpsnat-tw.i18m.cc.cd
 
 # macOS地图app直连补充
 DOMAIN-SUFFIX,ls.apple.com,DIRECT
