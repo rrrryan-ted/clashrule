@@ -164,11 +164,12 @@ DOMAIN-SUFFIX,tripo3d.ai
 
 DOMAIN-SUFFIX,deepseek.com
 DOMAIN-SUFFIX,doubao.com
-DOMAIN-SUFFIX,qwen.ai
 DOMAIN-SUFFIX,hailuo.ai
 DOMAIN-SUFFIX,kimi.com
 DOMAIN-SUFFIX,minimax.io
 DOMAIN-SUFFIX,trae.ai
+DOMAIN-SUFFIX,qwen.ai
+DOMAIN-SUFFIX,qianwen.com
 
 # Dola / Cici：有使用需求时启用
 DOMAIN-SUFFIX,dola.com
